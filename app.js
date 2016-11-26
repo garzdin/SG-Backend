@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var config = require('./config.json');
 var index = require('./controllers/index');
+var authentication = require('./controllers/authentication');
 
 app.use(bodyParser.json());
 
@@ -20,5 +21,8 @@ connection.on("open", function() {
 });
 
 app.get('/', index);
+app.post('/register', authentication.register);
+app.post('/login', authentication.login);
+app.use(authentication.middleware);
 
 app.listen(process.env.PORT || 3000);

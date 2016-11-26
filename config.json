@@ -1,3 +1,4 @@
 {
-  "db_url": "mongodb://admin:adminPASSWORD!@ds111188.mlab.com:11188/smartgarden"
+  "db_url": "mongodb://admin:adminPASSWORD!@ds111188.mlab.com:11188/smartgarden",
+  "jwt_secret": "sUpErAwEsOmEsEcReT!"
 }
