@@ -4,11 +4,14 @@ var Reading = require('./reading');
 var boardSchema = mongoose.Schema({
   serialNumber: {
     type: Number,
-    required: True,
+    required: true,
     match: /[a-zA-Z0-9]+$/
   },
-  readings: [Reading],
+  readings: [Reading.schema],
   dateAdded: Date
 });
 
-module.exports = mongoose.model('Board', boardSchema);
+module.exports = {
+  schema: boardSchema,
+  model: mongoose.model('Board', boardSchema)
+}

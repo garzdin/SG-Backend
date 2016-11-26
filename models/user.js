@@ -19,8 +19,11 @@ var userSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  boards: [Board],
+  boards: [Board.schema],
   dateRegistered: Date
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = {
+  schema: userSchema,
+  model: mongoose.model('User', userSchema)
+}

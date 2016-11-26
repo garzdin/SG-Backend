@@ -16,4 +16,8 @@ var readingSchema = mongoose.Schema({
   dateRead: Date
 });
 
-module.exports = mongoose.model('Reading', readingSchema);
+
+module.exports = {
+  schema: readingSchema,
+  model: mongoose.model('Reading', readingSchema)
+}
