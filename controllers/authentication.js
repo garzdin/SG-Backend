@@ -13,7 +13,7 @@ var register = function(request, response) {
     password: request.body.password,
     dateRegistered: new Date()
   }).save(function(error, data) {
-    return response.send({
+    response.json({
       "message": error ? "There was a problem" : "User saved"
     });
   });
@@ -34,7 +34,7 @@ var login = function(request, response) {
       var payload = {
         user: user._id
       }
-      response.json({"token": jwt.encode(payload, config.jwt_secret)})
+      response.json({"token": jwt.encode(payload, config.jwt_secret)});
     }
   });
 }
@@ -43,11 +43,12 @@ var middleware = function(request, response, next) {
   var token = request.body.token || request.get('Token') || request.query.token;
   if(token) {
     if(jwt.decode(token, config.jwt_secret)) {
-      request.user = jwt.decode(token, config.jwt_secret);
+      request.user = jwt.decode(token, config.jwt_secret).user;
       next()
     }
+  } else {
+    response.json({"message": "Invalid token"})
   }
-  response.json({"message": "Invalid token"});
 }
 
 module.exports = {
