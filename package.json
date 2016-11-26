@@ -11,5 +11,9 @@
     "iot"
   ],
   "author": "Teodor Garzdin <teodorgarzedin@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongoose": "^4.7.0"
+  }
 }
