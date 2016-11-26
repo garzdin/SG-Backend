@@ -43,6 +43,7 @@ var middleware = function(request, response, next) {
   var token = request.body.token || request.get('Token') || request.query.token;
   if(token) {
     if(jwt.decode(token, config.jwt_secret)) {
+      request.user = jwt.decode(token, config.jwt_secret);
       next()
     }
   }
