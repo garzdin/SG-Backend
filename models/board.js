@@ -12,6 +12,11 @@ var boardSchema = mongoose.Schema({
     required: true,
     match: /[a-zA-Z0-9]+$/
   },
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   readings: [Reading.schema],
   dateAdded: Date
 });
