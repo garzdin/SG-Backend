@@ -1,5 +1,5 @@
 var index = function(request, response) {
-  response.json({
+  return response.json({
     "message": "Welcome to the SmartGarden API"
   });
 }

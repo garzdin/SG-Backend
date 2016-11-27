@@ -4,7 +4,7 @@ var config = require('../config');
 
 var register = function(request, response) {
   if(!request.body.email || !request.body.password) {
-    response.json({"message": "Provide an email and a password"});
+    return response.json({"message": "Provide an email and a password"});
   }
   var user = new User.model({
     firstName: request.body.firstName,
@@ -13,7 +13,7 @@ var register = function(request, response) {
     password: request.body.password,
     dateRegistered: new Date()
   }).save(function(error, data) {
-    response.json({
+    return response.json({
       "message": error ? "There was a problem" : "User saved"
     });
   });
@@ -21,20 +21,20 @@ var register = function(request, response) {
 
 var login = function(request, response) {
   if(!request.body.email || !request.body.password) {
-    response.json({"message": "Provide an email and a password"});
+    return response.json({"message": "Provide an email and a password"});
   }
   User.model.findOne({ email: request.body.email }, function(error, user) {
     if(!user) {
-      response.json({"message": "User not found"});
+      return response.json({"message": "User not found"});
     }
     if(error) {
-      response.json({"message": error});
+      return response.json({"message": error});
     }
     if(user.password === request.body.password) {
       var payload = {
         user: user._id
       }
-      response.json({"token": jwt.encode(payload, config.jwt_secret)});
+      return response.json({"token": jwt.encode(payload, config.jwt_secret)});
     }
   });
 }
@@ -47,7 +47,7 @@ var middleware = function(request, response, next) {
       next()
     }
   } else {
-    response.json({"message": "Invalid token"})
+    return response.json({"message": "Invalid token"})
   }
 }
 
