@@ -1,18 +1,14 @@
 var bcrypt = require('bcrypt');
+var config = require('../config');
 
 var encrypt = function(password, callback) {
-   bcrypt.genSalt(10, function(error, salt) {
-    if (error) return callback(error);
-
-    bcrypt.hash(password, salt, function(error, hash) {
-      return callback(error, hash);
-    });
-
+  bcrypt.hash(password, config.salt_rounds, function(error, hash) {
+    return callback(error, hash);
   });
 };
 
-var compare = function(password, rawPassword, callback) {
-   bcrypt.compare(password, rawPassword, function(error, match) {
+var compare = function(password, hash, callback) {
+   bcrypt.compare(password, hash, function(error, match) {
       if (error) return callback(error);
       return callback(null, match);
    });

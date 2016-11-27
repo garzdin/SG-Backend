@@ -29,11 +29,14 @@ var login = function(request, response) {
   User.model.findOne({ email: request.body.email }, function(error, user) {
     if (!user) return response.json({"message": "User not found"});
     if (error) return response.json({"message": error});
-    passwordUtils.compare(user.password, request.body.password, function(error, match) {
+    passwordUtils.compare(request.body.password, user.password, function(error, match) {
       if (error) return response.json({"message": error});
-      if (match) return response.json({"token": jwt.encode({user: user._id}, config.jwt_secret)});
+      if (match) {
+        return response.json({"token": jwt.encode({user: user._id}, config.jwt_secret)});
+      } else {
+        return response.json({"message": "Wrong password"});
+      }
     });
-    return response.json({"message": "Wrong password"});
   });
 }
 
