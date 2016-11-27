@@ -25,7 +25,7 @@ app.get('/', index);
 app.post('/register', authentication.register);
 app.post('/login', authentication.login);
 app.use(authentication.middleware);
-app.post('/boards/create', boards.createBoard);
+app.post('/boards', boards.createBoard);
 app.get('/boards', boards.listAllBoards);
 app.get('/boards/:id', boards.listOneBoard);
 app.put('/boards/:id', boards.updateBoard);
