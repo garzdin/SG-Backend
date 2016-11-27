@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 
 var encrypt = function(password, callback) {
    bcrypt.genSalt(10, function(error, salt) {
