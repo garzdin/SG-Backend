@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Reading = require('./reading');
+var mongoose = require('mongoose')
+var Reading = require('./reading')
 
 var boardSchema = mongoose.Schema({
   name: {
@@ -19,7 +19,7 @@ var boardSchema = mongoose.Schema({
   },
   readings: [Reading.schema],
   dateAdded: Date
-});
+})
 
 module.exports = {
   schema: boardSchema,

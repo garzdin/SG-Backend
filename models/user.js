@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Board = require('./board');
+var mongoose = require('mongoose')
+var Board = require('./board')
 
 var userSchema = mongoose.Schema({
   firstName: {
@@ -22,7 +22,7 @@ var userSchema = mongoose.Schema({
   },
   boards: [Board.schema],
   dateRegistered: Date
-});
+})
 
 module.exports = {
   schema: userSchema,

@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 var readingSchema = mongoose.Schema({
   humidity: {
@@ -14,7 +14,7 @@ var readingSchema = mongoose.Schema({
     match: /[.0-9]+$/
   },
   dateRead: Date
-});
+})
 
 
 module.exports = {
