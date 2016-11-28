@@ -17,7 +17,7 @@ var update = function(request, response) {
     lastName: request.body.lastName,
     password: passwordUtils.encrypt(request.body.password),
 
-  }}, {runValidators: true} function(error, user) {
+  }}, {runValidators: true}, function(error, user) {
     if (error) return response.json({"message": error});
     return response.json({"message": "User updated"});
   });
