@@ -6,6 +6,7 @@ var config = require('./config.json');
 var index = require('./controllers/index');
 var authentication = require('./controllers/authentication');
 var boards = require('./controllers/boards');
+var account = require('./controllers/account');
 
 app.use(bodyParser.json());
 
@@ -31,5 +32,7 @@ app.get('/boards/:id', boards.listOneBoard);
 app.put('/boards/:id', boards.updateBoard);
 app.delete('/boards/:id', boards.deleteBoard);
 app.post('/boards/:id/reading', boards.saveReading);
+app.get('/me', account.index);
+app.put('/me', account.update);
 
 app.listen(process.env.PORT || 3000);
