@@ -1,7 +1,7 @@
 var jwt = require('jwt-simple');
 var User = require('../models/user');
 var config = require('../config');
-var passwordUtils = require('../utils/password');
+var passwordUtils = require('../utils/crypto');
 
 var register = function(request, response) {
   if (!request.body.email || !request.body.password) {
